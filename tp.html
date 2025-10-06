@@ -245,7 +245,16 @@
       cursor: pointer;
     }
 
-    @media (max-width: 400px) {
+    /* Mobile responsive spacing */
+    @media (max-width: 480px) {
+      .card {
+        margin-bottom: 48px; /* 0.5 inch on small screens */
+      }
+
+      .guarantee {
+        margin-bottom: 96px; /* 1 inch on small screens */
+      }
+
       .cookies-banner {
         flex-direction: column;
         text-align: center;
@@ -332,4 +341,3 @@
   </script>
 </body>
 </html>
-
