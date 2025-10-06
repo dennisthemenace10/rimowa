@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5" />
+  <title>RIMOWA — Lifetime Guarantee</title>
+
+  <style>
+    :root {
+      --bg: #f8f8f9;
+      --muted: #8b8b90;
+      --text: #111;
+      --card-bg: #fff;
+      --accent: #1864ff;
+      --radius: 14px;
+      --shadow: 0 6px 18px rgba(0,0,0,0.06);
+      --max-width: 520px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing: antialiased;
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      background: linear-gradient(180deg, #fbfbfc, #f7f7f8);
+      padding: calc(env(safe-area-inset-top, 20px) + 20px) 20px calc(env(safe-area-inset-bottom, 20px) + 20px);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    header {
+      text-align: center;
+      padding-bottom: 16px;
+    }
+
+    header h1 {
+      font-weight: 500;
+      letter-spacing: 6px;
+      font-size: clamp(24px, 4vw, 30px);
+      margin: 0;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 18px 12px;
+      position: relative;
+    }
+
+    .thumb {
+      flex: 0 0 105px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      background: transparent;
+      overflow: visible;
+    }
+
+    .thumb img {
+      width: 95%;
+      height: auto;
+      object-fit: contain;
+      object-position: center top;
+      margin-bottom: -4px;
+    }
+
+    .meta {
+      flex: 1 1 180px;
+      min-width: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .meta .title {
+      font-size: clamp(15px, 3vw, 18px);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .meta .sub {
+      font-size: clamp(12px, 2.3vw, 14px);
+      color: var(--muted);
+      margin: 4px 0;
+    }
+
+    .meta .serial {
+      font-size: clamp(11px, 2.2vw, 13px);
+      color: #555;
+      word-break: break-all;
+      margin-top: 2px;
+    }
+
+    .meta .lifetime {
+      font-size: clamp(11px, 2.2vw, 13px);
+      color: #888;
+      margin-top: 2px;
+    }
+
+    .guarantee {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .guarantee h2 {
+      margin: 0 0 12px;
+      font-size: clamp(20px, 3vw, 24px);
+      font-weight: 600;
+    }
+
+    .guarantee p {
+      color: var(--muted);
+      font-size: clamp(13px, 2.4vw, 15px);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .cta {
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 12px 26px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 6px 18px rgba(24,100,255,0.18);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .cta:hover {
+      box-shadow: 0 8px 20px rgba(24,100,255,0.25);
+    }
+
+    .cta:active {
+      transform: scale(0.98);
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px 22px;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .service-card h2 {
+      margin: 0 0 12px;
+      font-size: clamp(20px, 3vw, 24px);
+      font-weight: 600;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: clamp(13px, 2.4vw, 15px);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 40px;
+    }
+
+    /* Splash Screen */
+    .splash {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 1000;
+      transition: opacity 0.6s ease;
+    }
+
+    .splash img {
+      width: 120px;
+      animation: fadeLogo 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeLogo {
+      from { opacity: 0.5; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1.02); }
+    }
+
+    /* Cookies Banner */
+    .cookies-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      color: #333;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+      padding: 16px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .cookies-banner button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    @media (max-width: 400px) {
+      .cookies-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div class="splash" id="splash">
+    <img src="rimowa-sy.png" alt="RIMOWA Logo">
+  </div>
+
+  <div class="container" id="mainContent">
+    <header>
+      <h1>RIMOWA</h1>
+    </header>
+
+    <section class="card">
+      <div class="thumb">
+        <img src="rimowa.png" alt="RIMOWA Essential Cabin" />
+      </div>
+      <div class="meta">
+        <div style="font-size:13px;color:#999;">ESSENTIAL</div>
+        <h3 class="title">Cabin</h3>
+        <div class="sub">Designed in Germany</div>
+        <div class="serial"><b>Serial #:</b> 925530040023123</div>
+        <div class="lifetime">Lifetime guarantee</div>
+      </div>
+    </section>
+
+    <section class="guarantee">
+      <h2>Lifetime guarantee</h2>
+      <p>
+        For easy enjoyment of the lifetime guarantee, please register your RIMOWA suitcase here.
+      </p>
+      <a href="https://www.rimowa.com/us/en/registration-tutorial" target="_blank" class="cta">REGISTER MY RIMOWA</a>
+    </section>
+
+    <section class="service-card">
+      <h2>Service your RIMOWA</h2>
+      <p>
+        Need maintenance or repair for your RIMOWA suitcase? Click below to find care and repair options near you.
+      </p>
+      <a href="https://www.rimowa.com/us/en/care-and-repair" target="_blank" class="cta">CLICK HERE</a>
+    </section>
+
+    <footer>
+      © 2025 RIMOWA
+    </footer>
+  </div>
+
+  <!-- Cookies Banner -->
+  <div class="cookies-banner" id="cookiesBanner">
+    <span>We use cookies to improve your experience on our site. By continuing, you agree to our use of cookies.</span>
+    <button id="acceptCookies">Accept</button>
+  </div>
+
+  <script>
+    // Splash Screen fade-out
+    window.addEventListener('load', () => {
+      const splash = document.getElementById('splash');
+      const main = document.getElementById('mainContent');
+      setTimeout(() => {
+        splash.style.opacity = '0';
+        main.style.opacity = '1';
+        setTimeout(() => splash.style.display = 'none', 600);
+      }, 2000);
+    });
+
+    // Cookies consent logic
+    const cookiesBanner = document.getElementById('cookiesBanner');
+    const acceptBtn = document.getElementById('acceptCookies');
+
+    if (localStorage.getItem('cookiesAccepted') === 'true') {
+      cookiesBanner.style.display = 'none';
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookiesAccepted', 'true');
+      cookiesBanner.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
