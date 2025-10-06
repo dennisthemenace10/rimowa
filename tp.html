@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5" />
+  <meta name="format-detection" content="telephone=no"> <!-- Prevent Safari from auto-linking numbers -->
   <title>RIMOWA — Lifetime Guarantee</title>
 
   <style>
@@ -111,6 +112,9 @@
       word-break: break-all;
       margin-top: 2px;
       font-weight: 400;
+      -webkit-touch-callout: none; /* Prevent tap menu on iOS */
+      -webkit-user-select: text;   /* Allow text selection */
+      -webkit-tap-highlight-color: transparent; /* Remove highlight */
     }
 
     .meta .lifetime {
